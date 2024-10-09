@@ -9,6 +9,8 @@ pub mod datetime;
 /// Based on [eodhd
 /// docs](https://eodhistoricaldata.com/financial-apis/api-for-historical-data-and-volumes/)
 pub mod end_of_period;
+/// Based on [eodhd docs](https://eodhd.com/financial-apis/exchanges-api-list-of-tickers-and-trading-hours)
+pub mod exchanges;
 /// Based on [eodhd
 /// docs](https://eodhistoricaldata.com/financial-apis/stock-etfs-fundamental-data-feeds/)
 pub mod fundamentals;
