@@ -4,7 +4,7 @@ pub struct EODHDDate(pub i32, pub u32, pub u32);
 
 impl From<EODHDDate> for NaiveDate {
     fn from(ed: EODHDDate) -> Self {
-        NaiveDate::from_ymd(ed.0, ed.1, ed.2)
+        NaiveDate::from_ymd_opt(ed.0, ed.1, ed.2).expect("Invalid date")
     }
 }
 
