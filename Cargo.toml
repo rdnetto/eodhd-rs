@@ -26,7 +26,7 @@ tokio-tungstenite = { version = "0.17.2", features = ["native-tls"] }
 futures-util = { version = "0.3", default-features = false, features = ["sink", "std"] }
 futures-signals = "0.3.34"
 
-env_logger = "0.9"
+env_logger = "0.11"
 log = "0.4.22"
 
 reqwest = { version = "0.11.27", features = ["json"] }
