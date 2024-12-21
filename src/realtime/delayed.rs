@@ -27,7 +27,7 @@ pub async fn get_delayed(ticker: &str) -> EODHDDelayed {
     );
 
     println!("{:?}", url);
-    let request = reqwest::get(url.clone()).await;
+    let request = reqwest::get(url.clone()).await.and_then(|res| res.error_for_status());
     if request.is_err() {
         log::error!(
             "REQUEST TO EODHD DELAYED FAILED \n{:?}\n with {:?}",

@@ -31,7 +31,7 @@ pub async fn get_exchanges() -> Result<Vec<EODHDExchange>, EODHDError> {
         base_url = BASE_URL,
         token = env_eodhd_token()
     );
-    let request = reqwest::get(url).await;
+    let request = reqwest::get(url).await.and_then(|res| res.error_for_status());
 
     if request.is_err() {
         let description: &str = "request failed";
@@ -114,7 +114,7 @@ pub async fn get_tickers(
         );
     }
 
-    let request = reqwest::get(url).await;
+    let request = reqwest::get(url).await.and_then(|res| res.error_for_status());
 
     if request.is_err() {
         let description: &str = "request failed";

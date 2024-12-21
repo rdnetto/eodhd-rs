@@ -50,7 +50,7 @@ pub async fn get_economic_events(from: EODHDDate, to: EODHDDate) -> Vec<EODHDEco
         from = NaiveDate::from(from),
         to = NaiveDate::from(to),
     );
-    let request = reqwest::get(url.to_owned()).await;
+    let request = reqwest::get(url.to_owned()).await.and_then(|res| res.error_for_status());
     if request.is_err() {
         log::error!(
             "REQUEST TO EODHD FAILED \n{:?}\n with {:?}",

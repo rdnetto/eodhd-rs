@@ -73,7 +73,7 @@ pub async fn get_earnings(
     }
 
     debug!("{}", url);
-    let request = reqwest::get(url).await;
+    let request = reqwest::get(url).await.and_then(|res| res.error_for_status());
 
     if request.is_err() {
         let description: &str = "miner::eodhd::alternative::earnings request failed";

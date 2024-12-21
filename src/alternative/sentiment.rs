@@ -24,7 +24,7 @@ pub async fn get_sentiment(ticker: &str, from: EODHDDate, to: EODHDDate) -> Vec<
         to = NaiveDate::from(to),
     );
     println!("{:?}", url);
-    let request = reqwest::get(url.to_owned()).await;
+    let request = reqwest::get(url.to_owned()).await.and_then(|res| res.error_for_status());
     if request.is_err() {
         log::error!(
             "REQUEST TO EODHD FAILED \n{:?}\n with {:?}",

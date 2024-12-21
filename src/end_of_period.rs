@@ -90,7 +90,7 @@ pub async fn get_end_of_period(
         }
     }
 
-    let request = reqwest::get(url).await;
+    let request = reqwest::get(url).await.and_then(|res| res.error_for_status());
 
     if request.is_err() {
         let description: &str = "request failed";

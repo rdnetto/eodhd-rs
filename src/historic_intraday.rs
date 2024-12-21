@@ -66,7 +66,7 @@ pub async fn get_historic_intraday(
         url = format!("{url}&to={to}", url = url, to = to);
     }
 
-    let request = reqwest::get(url.clone()).await;
+    let request = reqwest::get(url.clone()).await.and_then(|res| res.error_for_status());
     match request {
         Ok(request) => match request.json::<Vec<EODHDHistoricIntraday>>().await {
             Ok(pre_eodhd_ticks) => Ok(pre_eodhd_ticks),
